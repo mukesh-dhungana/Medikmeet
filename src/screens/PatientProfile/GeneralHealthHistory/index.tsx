@@ -23,6 +23,7 @@ import {
 } from 'services/patientprofile'
 import { useAppSelector } from 'redux/hook'
 import { updatePatientProfileDetails } from 'redux/reducer/patientProfileSlice'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const GeneralHealthHistory = ({ navigation }: AppProps) => {
   const dispatch = useDispatch()
@@ -138,6 +139,8 @@ const GeneralHealthHistory = ({ navigation }: AppProps) => {
                 })
               }
               style={{ marginBottom: 20 }}
+              buttonColor={buttonBackgroundPrimaryColor}
+
             >
               Add Health Details
             </ButtonEl>
@@ -168,24 +171,21 @@ const GeneralHealthHistory = ({ navigation }: AppProps) => {
                   detail?.heart_rate ? `${detail?.heart_rate} bpm` : '',
                   detail?.temperature ? `${detail?.temperature} C` : '',
                   detail?.fasting_blood_sugar
-                    ? `${detail?.fasting_blood_sugar} ${
-                        bloodSugarTypes?.find(
-                          (type: any) => type?.value === detail?.fasting_blood_sugar_unit_id
-                        )?.label
-                      }`
+                    ? `${detail?.fasting_blood_sugar} ${bloodSugarTypes?.find(
+                      (type: any) => type?.value === detail?.fasting_blood_sugar_unit_id
+                    )?.label
+                    }`
                     : '',
                   detail?.random_blood_sugar
-                    ? `${detail?.random_blood_sugar} ${
-                        bloodSugarTypes?.find(
-                          (type: any) => type?.value === detail?.random_blood_sugar_unit_id
-                        )?.label
-                      }`
+                    ? `${detail?.random_blood_sugar} ${bloodSugarTypes?.find(
+                      (type: any) => type?.value === detail?.random_blood_sugar_unit_id
+                    )?.label
+                    }`
                     : '',
                   detail?.hba1c
-                    ? `${detail?.hba1c} ${
-                        hba1cTypes?.find((type: any) => type?.value === detail?.hba1c_unit_id)
-                          ?.label
-                      }`
+                    ? `${detail?.hba1c} ${hba1cTypes?.find((type: any) => type?.value === detail?.hba1c_unit_id)
+                      ?.label
+                    }`
                     : '',
                   detail?.spo2 ? `${detail?.spo2}%` : '',
                 ]}

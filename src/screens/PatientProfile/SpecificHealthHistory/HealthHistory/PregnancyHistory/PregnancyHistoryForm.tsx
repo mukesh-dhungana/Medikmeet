@@ -78,7 +78,6 @@ const PregnancyHistoryForm = ({ navigation }: AppProps) => {
   useEffect(() => {
     fetchDropdownItems()
   }, [])
-  console.log(formState)
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={styles.form}>
@@ -100,7 +99,7 @@ const PregnancyHistoryForm = ({ navigation }: AppProps) => {
                   !formState['is_treatment_for_irregularity']
                 )
               }}
-              label="Treatment taken for Irregularity"
+              label="Treatment taken for Irregularity?"
               style={{ marginBottom: 20 }}
             />
           )}
@@ -161,7 +160,7 @@ const PregnancyHistoryForm = ({ navigation }: AppProps) => {
                 onChange={() => {
                   onChange('have_abortion_history', !formState['have_abortion_history'])
                 }}
-                label="History of Abortion/misscarriage"
+                label="History of Abortion/misscarriage?"
                 style={{ marginBottom: 20 }}
               />
               {formState['have_abortion_history'] && (

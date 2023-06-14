@@ -9,6 +9,7 @@ import {
   deletePatientMedicalDocuments,
   getPatientMedicalDocuments,
 } from 'services/patientprofile/medicalDocuments'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const MedicalDocuments = () => {
   const navigation = useNavigation()
@@ -55,6 +56,7 @@ const MedicalDocuments = () => {
           <ButtonEl
             onPress={() => navigation?.navigate('MedicalDocumentsForm')}
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
           >
             Upload Documents
           </ButtonEl>

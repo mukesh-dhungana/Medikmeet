@@ -150,7 +150,7 @@ const InterestForm = () => {
             { label: 'No', value: false },
           ]}
           error={errors['is_insurance_covered']}
-          placeholder="Are you covered by Insurance"
+          placeholder="Are you covered by Insurance (Health/Life/Personal Accident)"
           setValue={(value: string) => onChange('is_insurance_covered', value)}
           zIndex={100}
           adjustScrollMargin
@@ -162,7 +162,7 @@ const InterestForm = () => {
               onChange={() => {
                 onChange('want_insurance', !formState['want_insurance'])
               }}
-              label="Do you want to be covered by insurance?"
+              label="Do you want to be covered by insurance (Health/Life/Personal Accident) ?"
             />
           </View>
         )}

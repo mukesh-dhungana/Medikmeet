@@ -8,6 +8,7 @@ import {
   deletePatientPregnancyHistory,
   getPatientContraceptiveHistory,
   getPatientPregnancyHistory,
+  updatePatientProfile,
 } from 'services/patientprofile'
 import {
   getDeliveryType,
@@ -16,16 +17,23 @@ import {
   getDuration,
 } from 'services/masters'
 import { getDropdownFormat } from 'helpers/utils'
+import SwitchEl from 'components/elements/form/Switch'
+import { useAppDispatch, useAppSelector } from 'redux/hook'
+import { updatePatientProfileDetails } from 'redux/reducer/patientProfileSlice'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const PregnancyHistory = () => {
   const navigation = useNavigation()
   const [pregnancyHistory, setPregnancyHistory] = useState<any[]>()
   const [contraceptiveHistory, setContraceptiveHistory] = useState<any[]>()
+  const { profile } = useAppSelector(state => state.patientProfile)
+  const [isOnContraceptive, setIsOnContraceptive] = useState(profile?.on_any_contraceptive);
 
   const [menstrualCycleType, setMenstrualCycleType] = useState([])
   const [deliveryType, setDeliveryType] = useState([])
   const [contraceptiveType, setContraceptiveType] = useState([])
   const [duration, setDuration] = useState([])
+  const dispatch = useAppDispatch();
 
   const fetchPregnancyHistory = useCallback(async () => {
     try {
@@ -114,6 +122,21 @@ const PregnancyHistory = () => {
       fetchContraceptiveHistory()
     }, [])
   )
+
+  const onHandleContraceptiveChange = async () => {
+
+
+    try {
+      const res = await updatePatientProfile({ isNew: false, on_any_contraceptive: !isOnContraceptive })
+      dispatch(updatePatientProfileDetails({ ...profile, on_any_contraceptive: !isOnContraceptive }))
+
+      setIsOnContraceptive((prev: boolean) => !prev)
+
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
   return (
     <ScrollView>
       <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 20 }}>
@@ -123,6 +146,8 @@ const PregnancyHistory = () => {
               navigation?.navigate('PregnancyHistoryForm', { menstrualCycleType, deliveryType })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Pregnancy History
           </ButtonEl>
@@ -153,13 +178,26 @@ const PregnancyHistory = () => {
               onEdit={handleEdit}
             />
           ))}
+          <View style={{ marginRight: 40, marginVertical: 20 }}>
+            <SwitchEl
+              value={isOnContraceptive}
+              onChange={onHandleContraceptiveChange}
+              label="Are You Presently using any Contraceptive or were you using any in the past?"
+              style={{ marginBottom: 20 }}
+            />
+
+          </View>
+
         </View>
-        <View style={styles.singleContainer}>
+
+        {isOnContraceptive && <View style={styles.singleContainer}>
           <ButtonEl
             onPress={() =>
               navigation?.navigate('ContraceptiveHistoryForm', { contraceptiveType, duration })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Contraceptive History
           </ButtonEl>
@@ -185,7 +223,7 @@ const PregnancyHistory = () => {
               onEdit={handleContraceptiveEdit}
             />
           ))}
-        </View>
+        </View>}
       </View>
     </ScrollView>
   )
@@ -196,6 +234,6 @@ export default PregnancyHistory
 const styles = StyleSheet.create({
   numbersContainer: {},
   singleContainer: {
-    marginVertical: 24,
+    marginVertical: 14,
   },
 })

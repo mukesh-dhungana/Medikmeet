@@ -86,12 +86,16 @@ const PatientProfileMain = ({ navigation }: AppProps) => {
             </TouchableOpacity>
             <MyText style={styles.userName}>Dr TJ</MyText>
           </View>
-          <MyText style={styles.profileInformation}>Profile Information</MyText>
+          <View style={styles.emailNumber}>
+            <Text style={styles.emailText}>kin@mailsac.com</Text>
+            <Text style={styles.numberText}>+60-111111</Text>
+          </View>
+          {/* <MyText style={styles.profileInformation}>Profile Information</MyText> */}
         </View>
         <View style={styles.bottomContainer}>
           <List.Section title="">
             <List.Accordion
-              title="Contact & Basic Info"
+              title="Profile Information"
               titleStyle={styles.titleStyle}
               style={{
                 ...styles.accordion,
@@ -114,11 +118,11 @@ const PatientProfileMain = ({ navigation }: AppProps) => {
                   // borderLeftColor: '#030229',
                 }}
                 titleStyle={styles.itemStyle}
-                title="Contact Info"
+                title="Personal Information"
                 right={() => <Icon name="right-arrow" size={14} />}
                 onPress={() => navigateTo('ContactInfoForm')}
               />
-              <List.Item
+              {/* <List.Item
                 style={{
                   ...styles.accordion,
                   ...styles.accordionItem,
@@ -129,7 +133,7 @@ const PatientProfileMain = ({ navigation }: AppProps) => {
                 title="Basic Info"
                 right={() => <Icon name="right-arrow" size={14} />}
                 onPress={() => navigateTo('BasicInfoForm')}
-              />
+              /> */}
               <List.Item
                 style={{
                   ...styles.accordion,
@@ -271,6 +275,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: 10,
     marginBottom: 30,
+  },
+  emailNumber: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    marginHorizontal: 20,
+  },
+  emailText:{
+    color:'#B3B3BF',
+    textDecorationLine:'underline'
+  },
+  numberText:{
+    color:'#B3B3BF',
+
   },
   profileInformation: {
     textAlign: 'center',

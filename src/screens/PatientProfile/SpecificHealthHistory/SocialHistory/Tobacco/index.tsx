@@ -15,12 +15,7 @@ const defaultFormState = {
   smoking_for: '',
   smoking_for_unit_id: '',
   intention_to_quit: '',
-  does_chemical_dust_expose: '',
-  work_timings: '',
-  exposure_extent: '',
-  workplace_protection_offered: '',
-  does_symptoms_improve: '',
-  occupational_disorder_desc: '',
+
 }
 
 const Tobacco = (props: {
@@ -122,48 +117,7 @@ const Tobacco = (props: {
           </>
         )}
 
-        <SwitchEl
-          value={formState['does_chemical_dust_expose']}
-          onChange={() => {
-            onChange('does_chemical_dust_expose', !formState['does_chemical_dust_expose'])
-          }}
-          label="Chemical or Dust exposure"
-          style={{ marginBottom: 20 }}
-        />
-        {formState['does_chemical_dust_expose'] && (
-          <>
-            <InputEl
-              label="Work timings"
-              onChangeText={(text) => onChange('work_timings', text)}
-              value={formState['work_timings']}
-            />
-            <InputEl
-              label="Extent of exposure"
-              onChangeText={(text) => onChange('exposure_extent', text)}
-              value={formState['exposure_extent']}
-            />
-            <InputEl
-              label="Workplace protection offered"
-              onChangeText={(text) => onChange('workplace_protection_offered', text)}
-              value={formState['workplace_protection_offered']}
-            />
-            <SwitchEl
-              value={formState['does_symptoms_improve']}
-              onChange={() => {
-                onChange('does_symptoms_improve', !formState['does_symptoms_improve'])
-              }}
-              label="Does symptoms improve over weekend or during holidays?"
-              style={{ marginBottom: 20 }}
-            />
-            {formState['does_symptoms_improve'] && (
-              <InputEl
-                label="Describe occupational disorder"
-                onChangeText={(text) => onChange('occupational_disorder_desc', text)}
-                value={formState['occupational_disorder_desc']}
-              />
-            )}
-          </>
-        )}
+
       </View>
       <ButtonEl onPress={handleEdit} style={{ marginBottom: 20 }}>
         Update

@@ -8,6 +8,7 @@ import SwitchEl from 'components/elements/form/Switch'
 import { deletePatientAllergyHistory, getPatientAllergyHistory } from 'services/patientprofile'
 import { getAllergyType, getDuration } from 'services/masters'
 import { getDropdownFormat } from 'helpers/utils'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const AllergyHistory = () => {
   const navigation = useNavigation()
@@ -82,6 +83,8 @@ const AllergyHistory = () => {
               })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Allergy History
           </ButtonEl>
@@ -99,10 +102,9 @@ const AllergyHistory = () => {
                   ?.label,
                 history?.allergy_type_id,
                 history?.allergy_description,
-                `${history?.allergy_discovery} ${
-                  duration?.find(
-                    (center: any) => center.value === history?.allergy_discovery_unit_id
-                  )?.label
+                `${history?.allergy_discovery} ${duration?.find(
+                  (center: any) => center.value === history?.allergy_discovery_unit_id
+                )?.label
                 }`,
               ]}
               id={history?.id}

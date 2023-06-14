@@ -20,7 +20,7 @@ instance.interceptors.request.use(async (config: InternalAxiosRequestConfig) => 
   let jwt: any = await AsyncStorage.getItem(JWT_KEY)
   // jwt = {
   //   access_token:
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c0BtYWlsc2FjLmNvbSIsImxvZ2luX2lkIjoxODcsImV4cCI6MTY4NDY2NjI0MX0.Tqh7LY-8dxIOk_cS6ypCBW9c_E0r0_6wzlIrSAtgHCE',
+  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraW5AbWFpbHNhYy5jb20iLCJsb2dpbl9pZCI6MzA1LCJleHAiOjE2ODYzMjQ5MDh9.bbtB7Xz2-e9kyGerJJTc03ZwWYj-LKFRBHDy-WTaHlE',
   // }
   jwt = JSON.parse(jwt || '{}')
 

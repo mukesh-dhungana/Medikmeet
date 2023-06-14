@@ -52,57 +52,56 @@ const ContraceptiveHistoryForm = (props: AppProps) => {
     }
   }, [contraceptiveHistory])
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View style={styles.form}>
-        <KeyboardDismiss>
+    <View style={styles.form}>
+      <KeyboardDismiss>
+        <Dropdown
+          value={formState['contraceptive_type_id']}
+          items={contraceptiveType}
+          error={errors['contraceptive_type_id']}
+          placeholder="Contraceptive Type"
+          setValue={(value: string) => onChange('contraceptive_type_id', value)}
+          zIndex={100}
+        />
+        <InputEl
+          label="Generic Name"
+          onChangeText={(text) => onChange('contraceptive_name', text)}
+          value={formState['contraceptive_name']}
+        />
+        <InputEl
+          label="Date started"
+          onChangeText={(text) => onChange('date_started_on', text)}
+          value={formState['date_started_on']}
+        />
+        <View style={styles.container}>
           <InputEl
-            label="Date started on contraceptive"
-            onChangeText={(text) => onChange('date_started_on', text)}
-            value={formState['date_started_on']}
+            label="Time Period"
+            onChangeText={(text) => onChange('duration_been_on', text)}
+            value={formState['duration_been_on']}
+            style={{ flex: 1 }}
+            keyboardType="number-pad"
           />
-          <View style={styles.container}>
-            <InputEl
-              label="Duration been on contraceptive"
-              onChangeText={(text) => onChange('duration_been_on', text)}
-              value={formState['duration_been_on']}
-              style={{ flex: 1 }}
-              keyboardType="number-pad"
-            />
-            <Dropdown
-              value={formState['duration_been_on_unit_id']}
-              items={duration}
-              error={errors['duration_been_on_unit_id']}
-              placeholder="Unit"
-              setValue={(value: string) => onChange('duration_been_on_unit_id', value)}
-              zIndex={150}
-              styles={{ flex: 0.4, marginRight: -30 }}
-            />
-          </View>
-
           <Dropdown
-            value={formState['contraceptive_type_id']}
-            items={contraceptiveType}
-            error={errors['contraceptive_type_id']}
-            placeholder="Contraceptive Type"
-            setValue={(value: string) => onChange('contraceptive_type_id', value)}
-            zIndex={100}
+            value={formState['duration_been_on_unit_id']}
+            items={duration}
+            error={errors['duration_been_on_unit_id']}
+            placeholder="Unit"
+            setValue={(value: string) => onChange('duration_been_on_unit_id', value)}
+            zIndex={150}
+            styles={{ flex: 0.4, marginRight: -30 }}
           />
-          <InputEl
-            label="Name of contraceptive"
-            onChangeText={(text) => onChange('contraceptive_name', text)}
-            value={formState['contraceptive_name']}
-          />
+        </View>
 
-          <ButtonEl
-            onPress={onFormSubmit}
-            style={{ marginVertical: 20 }}
-            btnTextColor={primaryColor}
-          >
-            Save
-          </ButtonEl>
-        </KeyboardDismiss>
-      </View>
-    </ScrollView>
+
+
+        <ButtonEl
+          onPress={onFormSubmit}
+          style={{ marginVertical: 20 }}
+          btnTextColor={primaryColor}
+        >
+          Save
+        </ButtonEl>
+      </KeyboardDismiss>
+    </View>
   )
 }
 
@@ -111,7 +110,7 @@ export default ContraceptiveHistoryForm
 const styles = StyleSheet.create({
   form: {
     padding: 20,
-    flex: 1,
+    flex: 0.6,
   },
   durationBox: {
     flexDirection: 'row',

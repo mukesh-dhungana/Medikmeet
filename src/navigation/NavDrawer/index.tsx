@@ -14,9 +14,7 @@ const NavDrawer = () => {
         screenOptions={{
           headerTintColor: primaryColor,
           headerTitle: '',
-          headerRight: () => (
-            <Icon name="messenger" size={25} style={{ marginRight: 10 }} color={primaryColor} />
-          ),
+
           headerShown: false,
         }}
         id="LeftDrawer"

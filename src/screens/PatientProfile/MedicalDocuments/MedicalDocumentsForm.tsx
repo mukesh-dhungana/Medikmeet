@@ -106,7 +106,6 @@ const MedicalDocumentsForm = (props: AppProps) => {
           <ButtonEl
             onPress={onFormSubmit}
             style={{ marginVertical: 20 }}
-            btnTextColor={primaryColor}
           >
             Save
           </ButtonEl>

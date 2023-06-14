@@ -11,6 +11,7 @@ import {
 } from 'services/patientprofile/specificHealthHistory/deathHistory'
 import { getFamilyMemberRelationship, getFamilyMemberRelationshipFor } from 'services/masters'
 import { getDropdownFormat } from 'helpers/utils'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const DeathHistory = () => {
   const navigation = useNavigation()
@@ -88,6 +89,7 @@ const DeathHistory = () => {
           <ButtonEl
             onPress={() => navigation?.navigate('DeathHistoryForm', { relationship })}
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
           >
             Add death in family
           </ButtonEl>

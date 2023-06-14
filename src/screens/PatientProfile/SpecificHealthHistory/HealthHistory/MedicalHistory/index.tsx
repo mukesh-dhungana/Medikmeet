@@ -14,6 +14,7 @@ import {
 } from 'services/patientprofile'
 import { getFollowUpCenter, getFollowUpCenterType } from 'services/masters'
 import { getDropdownFormat } from 'helpers/utils'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const MedicalHistory = () => {
   const navigation = useNavigation()
@@ -149,6 +150,8 @@ const MedicalHistory = () => {
               })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Medical History
           </ButtonEl>
@@ -192,6 +195,8 @@ const MedicalHistory = () => {
               })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Surgical History
           </ButtonEl>
@@ -239,6 +244,8 @@ const MedicalHistory = () => {
               })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Hospital Admission History
           </ButtonEl>

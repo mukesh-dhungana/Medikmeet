@@ -20,12 +20,16 @@ import {
   getLivingDwellingType,
   getOccupantMember,
 } from 'services/masters'
-import { getDropdownFormat } from 'helpers/utils'
+import { getDropdownFormat, handleTabArrowClick } from 'helpers/utils'
+import Icon from 'components/elements/Icon'
+import { renderTabBar } from '../HealthHistory'
+import ChemicalDustExposure from './ChemicalDustExposure'
 
 const FirstRoute = (props: any) => <Alcohol {...props} />
 const SecondRoute = (props: any) => <Caffinated {...props} />
 const ThirdRoute = (props: any) => <Tobacco {...props} />
-const FourthRoute = (props: any) => <Others {...props} />
+const FourthRoute = (props: any) => <ChemicalDustExposure {...props} />
+const FifthRoute = (props: any) => <Others {...props} />
 
 // const renderScene = SceneMap({
 //   first: FirstRoute,
@@ -34,18 +38,6 @@ const FourthRoute = (props: any) => <Others {...props} />
 //   fourth: FourthRoute,
 // })
 
-const renderTabBar = (props: any) => (
-  <TabBar
-    {...props}
-    indicatorStyle={{ backgroundColor: primaryColor }}
-    style={{ backgroundColor: '#F7F7F8', borderWidth: 0 }}
-    scrollEnabled
-    tabStyle={{ width: 200 }}
-    labelStyle={{ fontSize: 12, fontWeight: 600 }}
-    activeColor={primaryColor}
-    inactiveColor="#B3B3BF"
-  />
-)
 
 const SocialHistory = ({ navigation }: AppProps) => {
   const layout = useWindowDimensions()
@@ -55,7 +47,8 @@ const SocialHistory = ({ navigation }: AppProps) => {
     { key: 'first', title: 'Alcohol' },
     { key: 'second', title: 'Caffinated/Carbonated' },
     { key: 'third', title: 'Tobacco' },
-    { key: 'fourth', title: 'Others' },
+    { key: 'fourth', title: 'Chemical or Dust Exposure' },
+    { key: 'fifth', title: 'Others' },
   ])
   const [socialHistory, setSocialHistory] = useState([])
   const [consumptionType, setConsumptionType] = useState([])
@@ -88,6 +81,15 @@ const SocialHistory = ({ navigation }: AppProps) => {
       case 'fourth':
         return (
           <FourthRoute
+            socialHistory={socialHistory}
+            consumptionType={consumptionType}
+            onEdit={handleEdit}
+
+          />
+        )
+      case 'fifth':
+        return (
+          <FifthRoute
             socialHistory={socialHistory}
             consumptionType={consumptionType}
             onEdit={handleEdit}
@@ -161,7 +163,8 @@ const SocialHistory = ({ navigation }: AppProps) => {
           renderScene={renderScene}
           onIndexChange={setIndex}
           initialLayout={{ width: layout.width }}
-          renderTabBar={renderTabBar}
+          renderTabBar={(props) => renderTabBar(props, (arrow: any) => handleTabArrowClick(index, arrow, setIndex, routes))}
+
         />
       </View>
     </View>
