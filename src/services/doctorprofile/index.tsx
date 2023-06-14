@@ -37,6 +37,24 @@ const updateDoctorProfile = async (payload: DoctorProfileInterface) => {
   }
 }
 
+const getDoctorProfileServices = async () => {
+  try {
+    let response = await API.get(`${Apis.DoctorProfile}/profile/services`)
+    return getAPIResponse(response)
+  } catch (err: any) {
+    return getAPIResponse(err.response)
+  }
+}
+
+const postDoctorProfileServices = async (payload: any) => {
+  try {
+    let response = await API.post(`${Apis.DoctorProfile}/profile/services`, payload)
+    return getAPIResponse(response)
+  } catch (err: any) {
+    return getAPIResponse(err.response)
+  }
+}
+
 // Upload Doctor Profile Picture
 const uploadDoctorProfilePicture = async (image: any) => {
   try {
@@ -355,4 +373,6 @@ export {
   deleteDoctorProfileWork,
   updateDoctorProfileWork,
   addDoctorProfileWorkDocument,
+  getDoctorProfileServices,
+  postDoctorProfileServices,
 }

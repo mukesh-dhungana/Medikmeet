@@ -1,27 +1,17 @@
 import Icon from 'components/elements/Icon'
 import MyText from 'components/elements/MyText'
 import * as React from 'react'
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { Avatar } from 'react-native-paper'
 
 interface IDoctorProfileProps {
   showFollowBtn?: boolean
   showTeleConsultBtn?: boolean
   showAppointmentBtn?: boolean
-  onFollowClick?: () => void
-  onAppointmentClick?: () => void
-  onTeleConnectClick?: () => void
 }
 const docList = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
 const DoctorList: React.FunctionComponent<IDoctorProfileProps> = (props) => {
-  const {
-    showTeleConsultBtn,
-    showAppointmentBtn,
-    showFollowBtn,
-    onFollowClick,
-    onAppointmentClick,
-    onTeleConnectClick,
-  } = props
+  const { showTeleConsultBtn, showAppointmentBtn, showFollowBtn } = props
   return (
     <View style={styles.docListContainer}>
       {docList.map((doc) => (
@@ -56,39 +46,33 @@ const DoctorList: React.FunctionComponent<IDoctorProfileProps> = (props) => {
             }}
           >
             {showFollowBtn && (
-              <Pressable onPress={() => onFollowClick && onFollowClick()}>
-                <View
-                  style={{
-                    ...styles.statusContainer,
-                  }}
-                >
-                  <MyText style={{ color: '#ffffff', fontSize: 11 }}>Follow</MyText>
-                </View>
-              </Pressable>
+              <View
+                style={{
+                  ...styles.statusContainer,
+                }}
+              >
+                <MyText style={{ color: '#ffffff', fontSize: 11 }}>Follow</MyText>
+              </View>
             )}
             {showTeleConsultBtn && (
-              <Pressable onPress={() => onTeleConnectClick && onTeleConnectClick()}>
-                <View
-                  style={{
-                    ...styles.statusContainer,
-                    width: 109,
-                  }}
-                >
-                  <MyText style={{ color: '#ffffff', fontSize: 11 }}>Tele-Consult</MyText>
-                </View>
-              </Pressable>
+              <View
+                style={{
+                  ...styles.statusContainer,
+                  width: 109,
+                }}
+              >
+                <MyText style={{ color: '#ffffff', fontSize: 11 }}>Tele-Consult</MyText>
+              </View>
             )}
             {showAppointmentBtn && (
-              <Pressable onPress={() => onAppointmentClick && onAppointmentClick()}>
-                <View
-                  style={{
-                    ...styles.statusContainer,
-                    width: 118,
-                  }}
-                >
-                  <MyText style={{ color: '#ffffff', fontSize: 11 }}>Appointment</MyText>
-                </View>
-              </Pressable>
+              <View
+                style={{
+                  ...styles.statusContainer,
+                  width: 118,
+                }}
+              >
+                <MyText style={{ color: '#ffffff', fontSize: 11 }}>Appointment</MyText>
+              </View>
             )}
           </View>
         </View>

@@ -72,6 +72,8 @@ const ProfileInformation = ({ navigation }: AppProps) => {
     borderLeftColor: primaryColor,
     borderLeftWidth: 5,
   }
+
+  console.log({ profile })
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
@@ -98,7 +100,14 @@ const ProfileInformation = ({ navigation }: AppProps) => {
               profile?.last_name
             }`}</MyText>
           </View>
-          <MyText style={styles.profileInformation}>Profile Information</MyText>
+          <View style={styles.profileInfoHeader}>
+            <MyText style={{ ...styles.profileInfoContent, textDecorationLine: 'underline' }}>
+              {profile?.email}
+            </MyText>
+            <MyText style={styles.profileInfoContent}>
+              {profile?.country_dial_code + '-' + profile?.mobile_number}
+            </MyText>
+          </View>
         </View>
         <View style={styles.bottomContainer}>
           <List.Section title="">
@@ -129,18 +138,6 @@ const ProfileInformation = ({ navigation }: AppProps) => {
                 title="Personal Info"
                 right={() => <Icon name="right-arrow" size={14} />}
                 onPress={() => navigateTo('ContactBasicInfo')}
-              />
-              <List.Item
-                style={{
-                  ...styles.accordion,
-                  ...styles.accordionItem,
-                  // ...borderLeftStyle,
-                  // borderLeftColor: '#030229',
-                }}
-                titleStyle={styles.itemStyle}
-                title="About You"
-                right={() => <Icon name="right-arrow" size={14} />}
-                onPress={() => navigateTo('AboutYou')}
               />
               <List.Item
                 style={{
@@ -235,6 +232,72 @@ const ProfileInformation = ({ navigation }: AppProps) => {
                 right={() => <Icon name="right-arrow" size={14} />}
               />
             </List.Accordion>
+
+            <List.Accordion
+              title="Professional"
+              titleStyle={styles.titleStyle}
+              style={{
+                ...styles.accordion,
+                ...(expanded && expandedBlock === 'Professional' ? borderLeftStyle : {}),
+              }}
+              left={(props) => (
+                <Image {...props} source={require('../../assets/images/professional.png')} />
+              )}
+              onPress={() => {
+                setExpanded(!expanded)
+                setExpandedBlock('Professional')
+              }}
+            >
+              <List.Item
+                style={{
+                  ...styles.accordion,
+                  ...styles.accordionItem,
+                  ...borderLeftStyle,
+                  borderLeftColor: 'transparent',
+                }}
+                titleStyle={styles.itemStyle}
+                title="About You"
+                right={() => <Icon name="right-arrow" size={14} />}
+                onPress={() => navigateTo('AboutYou')}
+              />
+              <List.Item
+                title="Speciality/SubSpeciality"
+                style={{
+                  ...styles.accordion,
+                  ...styles.accordionItem,
+                  ...borderLeftStyle,
+                  borderLeftColor: 'transparent',
+                }}
+                titleStyle={styles.itemStyle}
+                onPress={() => navigateTo('specialty')}
+                right={() => <Icon name="right-arrow" size={14} />}
+              />
+              <List.Item
+                title="Experience"
+                style={{
+                  ...styles.accordion,
+                  ...styles.accordionItem,
+                  ...borderLeftStyle,
+                  borderLeftColor: 'transparent',
+                }}
+                titleStyle={styles.itemStyle}
+                onPress={() => navigateTo('EducationalInfo')}
+                right={() => <Icon name="right-arrow" size={14} />}
+              />
+              <List.Item
+                title="Membership/Association"
+                style={{
+                  ...styles.accordion,
+                  ...styles.accordionItem,
+                  ...borderLeftStyle,
+                  borderLeftColor: 'transparent',
+                }}
+                titleStyle={styles.itemStyle}
+                onPress={() => navigateTo('EducationalInfo')}
+                right={() => <Icon name="right-arrow" size={14} />}
+              />
+            </List.Accordion>
+
             <List.Accordion
               title="Work"
               titleStyle={styles.titleStyle}
@@ -265,7 +328,7 @@ const styles = StyleSheet.create({
   },
   doctorid: {
     fontWeight: '700',
-    color: 'black',
+    color: '#000000',
   },
   profileImage: {
     width: 100,
@@ -317,4 +380,15 @@ const styles = StyleSheet.create({
   },
   titleStyle: { color: '#171766', fontFamily: fontFamilyType['bold'], fontSize: 14 },
   itemStyle: { fontFamily: fontFamilyType['bold'], color: primaryColor, fontSize: 13 },
+  profileInfoHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 15,
+  },
+  profileInfoContent: {
+    color: '#B3B3BF',
+    fontWeight: '600',
+    fontFamily: fontFamilyType['extraBold'],
+  },
 })

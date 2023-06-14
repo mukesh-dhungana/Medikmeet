@@ -44,6 +44,7 @@ import FilterHorizontal from 'assets/svgs/FilterHorizontal.svg'
 import ArrowCircleLeft from 'assets/svgs/ArrowCircleLeft.svg'
 import ArrowCircleRight from 'assets/svgs/ArrowCircleRight.svg'
 import Upload from 'assets/svgs/Upload.svg'
+import Plus from 'assets/svgs/Plus.svg'
 
 interface IIconProps {
   size?: number
@@ -148,6 +149,8 @@ const Icon: React.FunctionComponent<IIconProps> = (props) => {
         return ArrowCircleLeft
       case 'upload':
         return Upload
+      case 'plus':
+        return Plus
       default:
         return null
     }

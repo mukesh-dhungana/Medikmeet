@@ -14,9 +14,6 @@ interface ISearchResultProps {
   showTeleConsultBtn?: boolean
   showAppointmentBtn?: boolean
   topicListComponent?: React.ReactNode
-  onFollowClick?: () => {}
-  onAppointmentClick?: () => void
-  onTeleConnectClick?: () => void
 }
 
 const SearchResult: React.FunctionComponent<ISearchResultProps> = (props) => {
@@ -28,9 +25,6 @@ const SearchResult: React.FunctionComponent<ISearchResultProps> = (props) => {
     showTeleConsultBtn,
     showAppointmentBtn,
     topicListComponent,
-    onFollowClick,
-    onAppointmentClick,
-    onTeleConnectClick,
   } = props
   return (
     <View style={{ marginBottom: 50 }}>
@@ -55,10 +49,7 @@ const SearchResult: React.FunctionComponent<ISearchResultProps> = (props) => {
           <DoctorList
             showFollowBtn={showFollowBtn}
             showAppointmentBtn={showAppointmentBtn}
-            showTeleConsultBtn={showTeleConsultBtn}
-            onFollowClick={onFollowClick}
-            onTeleConnectClick={onTeleConnectClick}
-            onAppointmentClick={onAppointmentClick}
+            showTeleConsultBtn={showAppointmentBtn}
           />
         ) : !isEmpty(topicListComponent) ? (
           topicListComponent
