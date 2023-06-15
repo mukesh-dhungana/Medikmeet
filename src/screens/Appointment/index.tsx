@@ -35,7 +35,6 @@ const Appointment: React.FunctionComponent<IAppointmentProps> = (props) => {
   }
   const { formState, onChange, errors, validateForm, setFormState } = useForm(initialFormState)
   const [selectedStep, setSelectedStep] = React.useState(1)
-  const [showAppointMentModel, setShowAppointMentModel] = React.useState(false)
   return (
     <View style={styles.appointmentContainer}>
       <View style={{ ...styles.topBar, zIndex: showAddPost ? 0 : 100 }}>
@@ -79,7 +78,6 @@ const Appointment: React.FunctionComponent<IAppointmentProps> = (props) => {
             showAppointmentBtn
             showTeleConsultBtn
             topicListComponent={<TopicList />}
-            onAppointmentClick={() => setShowAppointMentModel(true)}
           />
         )}
       </ScrollView>
@@ -193,8 +191,8 @@ const Appointment: React.FunctionComponent<IAppointmentProps> = (props) => {
         </View>
       </Modal>
       <Modal
-        visible={showAppointMentModel}
-        onDismiss={() => setShowAppointMentModel(false)}
+        visible={true}
+        onDismiss={() => setShowSearchTypes(false)}
         contentContainerStyle={styles.containerStyle}
       >
         {selectedStep === 1 ? (

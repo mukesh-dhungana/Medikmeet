@@ -15,6 +15,7 @@ import Confirmation from './Confirmation/Confirmation'
 import Work from './Work/Work'
 import WorkForm from './Work/WorkForm'
 import AboutYouForm from './ContactAndBasicInfo/AboutYouForm'
+import SpecialtyForm from './Professional/Specialty'
 
 export {
   ContactBasicInfoForm,
@@ -34,4 +35,5 @@ export {
   Confirmation,
   Work,
   WorkForm,
+  SpecialtyForm,
 }
