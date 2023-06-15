@@ -33,6 +33,7 @@ import Pin from 'assets/svgs/Pin.svg'
 import Degree from 'assets/svgs/Degree.svg'
 import Certified from 'assets/svgs/Certified.svg'
 import ChevronDown from 'assets/svgs/ChevronDown.svg'
+import ChevronUp from 'assets/svgs/ChevronUp.svg'
 import Manager from 'assets/svgs/Manager.svg'
 import Poll from 'assets/svgs/Poll.svg'
 import Tag from 'assets/svgs/Tag.svg'
@@ -126,6 +127,8 @@ const Icon: React.FunctionComponent<IIconProps> = (props) => {
         return Certified
       case 'chevron-down':
         return ChevronDown
+      case 'chevron-up':
+        return ChevronUp
       case 'manger':
         return Manager
       case 'poll':

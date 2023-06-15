@@ -7,20 +7,24 @@ interface IMyTextProps {
   style?: Object
   fontStyle?: string
   numberOfLines?: number
+  onTextLayout?: (e: any) => void
 }
 const defaultProps = {
   fontSize: undefined,
   style: {},
   fontStyle: 'regular',
   numberOfLines: 0,
+  onTextLayout: () => {},
 }
 // do not use default Text component directly use MyText component instead
 const MyText: React.FunctionComponent<IMyTextProps> = (props) => {
-  const { children, style, fontStyle, numberOfLines } = props
+  const { children, style, fontStyle, numberOfLines, onTextLayout } = props
+
   return (
     <Text
       style={{ ...style, fontFamily: fontFamilyType[fontStyle || 'regular'] }}
       numberOfLines={numberOfLines}
+      onTextLayout={onTextLayout}
     >
       {children}
     </Text>

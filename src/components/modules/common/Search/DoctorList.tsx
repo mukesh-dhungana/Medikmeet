@@ -23,77 +23,85 @@ const DoctorList: React.FunctionComponent<IDoctorProfileProps> = (props) => {
     onTeleConnectClick,
   } = props
   return (
-    <View style={styles.docListContainer}>
-      {docList.map((doc) => (
-        <View style={styles.docList} key={doc.id}>
-          <View style={{ flexDirection: 'row', gap: 30 }}>
-            <Avatar.Image size={100} source={require('assets/images/Logo2.png')} />
-            <View>
-              <MyText style={styles.docName}>Dr. Sarath Pal</MyText>
-              <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 10 }}>
-                <Icon name="degree" size={15} />
-                <View>
-                  <MyText style={styles.docDetail}>General Physician</MyText>
-                  <MyText style={styles.docDetail}>18 years Experience</MyText>
+    <ScrollView>
+      <View style={styles.docListContainer}>
+        {docList.map((doc) => (
+          <View style={styles.docList} key={doc.id}>
+            <View style={{ flexDirection: 'row', gap: 30 }}>
+              <Avatar.Image size={100} source={require('assets/images/Logo2.png')} />
+              <View>
+                <MyText style={styles.docName}>Dr. Sarath Pal</MyText>
+                <View
+                  style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 10 }}
+                >
+                  <Icon name="degree" size={15} />
+                  <View>
+                    <MyText style={styles.docDetail}>General Physician</MyText>
+                    <MyText style={styles.docDetail}>18 years Experience</MyText>
+                  </View>
                 </View>
-              </View>
-              <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 10 }}>
-                <Icon name="pin" size={15} />
-                <MyText style={styles.docDetail}>Segambut, Kuala Lumpur | Chisel Dental</MyText>
-              </View>
-              <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 10 }}>
-                <Icon name="certified" size={15} />
-                <MyText style={styles.docDetail}>Medical Registration Verified</MyText>
+                <View
+                  style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 10 }}
+                >
+                  <Icon name="pin" size={15} />
+                  <MyText style={styles.docDetail}>Segambut, Kuala Lumpur | Chisel Dental</MyText>
+                </View>
+                <View
+                  style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 10 }}
+                >
+                  <Icon name="certified" size={15} />
+                  <MyText style={styles.docDetail}>Medical Registration Verified</MyText>
+                </View>
               </View>
             </View>
+            <View
+              style={{
+                alignItems: 'flex-end',
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+                gap: 15,
+              }}
+            >
+              {showFollowBtn && (
+                <Pressable onPress={() => onFollowClick && onFollowClick()}>
+                  <View
+                    style={{
+                      ...styles.statusContainer,
+                    }}
+                  >
+                    <MyText style={{ color: '#ffffff', fontSize: 11 }}>Follow</MyText>
+                  </View>
+                </Pressable>
+              )}
+              {showTeleConsultBtn && (
+                <Pressable onPress={() => onTeleConnectClick && onTeleConnectClick()}>
+                  <View
+                    style={{
+                      ...styles.statusContainer,
+                      width: 109,
+                    }}
+                  >
+                    <MyText style={{ color: '#ffffff', fontSize: 11 }}>Tele-Consult</MyText>
+                  </View>
+                </Pressable>
+              )}
+              {showAppointmentBtn && (
+                <Pressable onPress={() => onAppointmentClick && onAppointmentClick()}>
+                  <View
+                    style={{
+                      ...styles.statusContainer,
+                      width: 118,
+                    }}
+                  >
+                    <MyText style={{ color: '#ffffff', fontSize: 11 }}>Appointment</MyText>
+                  </View>
+                </Pressable>
+              )}
+            </View>
           </View>
-          <View
-            style={{
-              alignItems: 'flex-end',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              gap: 15,
-            }}
-          >
-            {showFollowBtn && (
-              <Pressable onPress={() => onFollowClick && onFollowClick()}>
-                <View
-                  style={{
-                    ...styles.statusContainer,
-                  }}
-                >
-                  <MyText style={{ color: '#ffffff', fontSize: 11 }}>Follow</MyText>
-                </View>
-              </Pressable>
-            )}
-            {showTeleConsultBtn && (
-              <Pressable onPress={() => onTeleConnectClick && onTeleConnectClick()}>
-                <View
-                  style={{
-                    ...styles.statusContainer,
-                    width: 109,
-                  }}
-                >
-                  <MyText style={{ color: '#ffffff', fontSize: 11 }}>Tele-Consult</MyText>
-                </View>
-              </Pressable>
-            )}
-            {showAppointmentBtn && (
-              <Pressable onPress={() => onAppointmentClick && onAppointmentClick()}>
-                <View
-                  style={{
-                    ...styles.statusContainer,
-                    width: 118,
-                  }}
-                >
-                  <MyText style={{ color: '#ffffff', fontSize: 11 }}>Appointment</MyText>
-                </View>
-              </Pressable>
-            )}
-          </View>
-        </View>
-      ))}
-    </View>
+        ))}
+      </View>
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({

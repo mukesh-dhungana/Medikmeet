@@ -8,6 +8,7 @@ import Welcome from 'screens/Authentication/Welcome'
 import { MyTheme } from 'utils/theme'
 import Authentication from './Authentication'
 import NavDrawer from './NavDrawer'
+import TeleConnect from 'screens/TeleConnect'
 
 const Stack = createNativeStackNavigator()
 // do not use default Text component directly use MyText component instead
@@ -30,6 +31,11 @@ const Navigation = () => {
           name="NavDrawer"
           component={NavDrawer}
           options={{ title: 'Home', headerShown: false }}
+        />
+        <Stack.Screen
+          name="TeleConnect"
+          component={TeleConnect}
+          options={{ title: 'TeleConnect', headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

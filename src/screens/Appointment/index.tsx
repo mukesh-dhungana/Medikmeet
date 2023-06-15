@@ -1,3 +1,4 @@
+import { NavigationProp } from '@react-navigation/native'
 import MyText from 'components/elements/MyText'
 import Dropdown from 'components/elements/form/Dropdown'
 import AppointmentRequest from 'components/modules/Appointment/AppointmentRequest'
@@ -12,7 +13,9 @@ import * as React from 'react'
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import { Modal } from 'react-native-paper'
 
-interface IAppointmentProps {}
+interface IAppointmentProps {
+  navigation: NavigationProp<any, any>
+}
 const initialFormState = {
   doctorType: 'male',
   speciality: '',
@@ -21,6 +24,7 @@ const initialFormState = {
 }
 
 const Appointment: React.FunctionComponent<IAppointmentProps> = (props) => {
+  const { navigation } = props
   const [searchText, setSearchText] = React.useState('')
   const [showAddPost, setShowAddPost] = React.useState(false)
   const [showMyCircle, setShowMyCircle] = React.useState(false)
@@ -71,7 +75,6 @@ const Appointment: React.FunctionComponent<IAppointmentProps> = (props) => {
           </Pressable>
         </View> */}
       </View>
-      <ScrollView>
         {showSearchResult && (
           <SearchResult
             searchType={selectedSearchType.value as string}
@@ -80,9 +83,9 @@ const Appointment: React.FunctionComponent<IAppointmentProps> = (props) => {
             showTeleConsultBtn
             topicListComponent={<TopicList />}
             onAppointmentClick={() => setShowAppointMentModel(true)}
+            onTeleConnectClick={() => navigation.navigate('TeleConnect')}
           />
         )}
-      </ScrollView>
       <Modal
         visible={showSearchTypes}
         onDismiss={() => setShowSearchTypes(false)}

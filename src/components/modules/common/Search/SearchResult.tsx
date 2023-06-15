@@ -50,22 +50,20 @@ const SearchResult: React.FunctionComponent<ISearchResultProps> = (props) => {
           </Pressable>
         </View>
       )}
-      <ScrollView>
-        {searchType === 'doctor' ? (
-          <DoctorList
-            showFollowBtn={showFollowBtn}
-            showAppointmentBtn={showAppointmentBtn}
-            showTeleConsultBtn={showTeleConsultBtn}
-            onFollowClick={onFollowClick}
-            onTeleConnectClick={onTeleConnectClick}
-            onAppointmentClick={onAppointmentClick}
-          />
-        ) : !isEmpty(topicListComponent) ? (
-          topicListComponent
-        ) : (
-          <TopicsList />
-        )}
-      </ScrollView>
+      {searchType === 'doctor' ? (
+        <DoctorList
+          showFollowBtn={showFollowBtn}
+          showAppointmentBtn={showAppointmentBtn}
+          showTeleConsultBtn={showTeleConsultBtn}
+          onFollowClick={onFollowClick}
+          onTeleConnectClick={onTeleConnectClick}
+          onAppointmentClick={onAppointmentClick}
+        />
+      ) : !isEmpty(topicListComponent) ? (
+        topicListComponent
+      ) : (
+        <TopicsList />
+      )}
     </View>
   )
 }
