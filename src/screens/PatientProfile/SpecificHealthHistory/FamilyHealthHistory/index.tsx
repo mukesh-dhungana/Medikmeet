@@ -6,6 +6,8 @@ import { primaryColor } from 'styles/colors'
 import ProfileHeader from 'components/modules/Profileheader'
 import FamilyIllnessRecord from './FamilyIllnessRecord'
 import DeathHistory from './DeathHistory'
+import { renderTabBar } from '../HealthHistory'
+import { handleTabArrowClick } from 'helpers/utils'
 
 const FirstRoute = () => <FamilyIllnessRecord />
 
@@ -16,18 +18,6 @@ const renderScene = SceneMap({
   second: SecondRoute,
 })
 
-const renderTabBar = (props: any) => (
-  <TabBar
-    {...props}
-    indicatorStyle={{ backgroundColor: primaryColor }}
-    style={{ backgroundColor: '#F7F7F8', borderWidth: 0 }}
-    scrollEnabled
-    tabStyle={{ width: 200 }}
-    labelStyle={{ fontSize: 12, fontWeight: 600 }}
-    activeColor={primaryColor}
-    inactiveColor="#B3B3BF"
-  />
-)
 
 const FamilyHealthHistory = ({ navigation }: AppProps) => {
   const layout = useWindowDimensions()
@@ -50,7 +40,8 @@ const FamilyHealthHistory = ({ navigation }: AppProps) => {
           renderScene={renderScene}
           onIndexChange={setIndex}
           initialLayout={{ width: layout.width }}
-          renderTabBar={renderTabBar}
+          renderTabBar={(props) => renderTabBar(props, (arrow: any) => handleTabArrowClick(index, arrow, setIndex, routes))}
+
         />
       </View>
       <></>

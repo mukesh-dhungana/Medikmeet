@@ -16,6 +16,7 @@ import {
   getFollowUpCenterType,
 } from 'services/masters'
 import { getDropdownFormat } from 'helpers/utils'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const FamilyIllnessRecord = () => {
   const navigation = useNavigation()
@@ -96,6 +97,8 @@ const FamilyIllnessRecord = () => {
               })
             }
             style={{ marginBottom: 20 }}
+            buttonColor={buttonBackgroundPrimaryColor}
+
           >
             Add Family Medical/Surgical History
           </ButtonEl>

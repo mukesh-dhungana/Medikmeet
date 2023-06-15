@@ -85,7 +85,7 @@ const PatientProfile = () => {
         options={{
           headerTitle: () => (
             <ProfileHeader
-              title="Add health Details"
+              title="Add Health Details"
               onBackPress={() => navigation.navigate('GeneralHealthHistory')}
             />
           ),

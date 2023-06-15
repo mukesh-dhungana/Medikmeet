@@ -25,7 +25,7 @@ function Welcome(props: AppProps) {
         // } else {
         //   navigation.navigate('Login', { name: 'Login' })
         // }
-        //navigation.navigate('Authentication')
+        // navigation.navigate('Authentication')
         navigation.navigate('NavDrawer')
       }
       getAsyncStorage()

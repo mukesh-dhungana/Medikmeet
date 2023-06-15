@@ -45,6 +45,10 @@ import FilterHorizontal from 'assets/svgs/FilterHorizontal.svg'
 import ArrowCircleLeft from 'assets/svgs/ArrowCircleLeft.svg'
 import ArrowCircleRight from 'assets/svgs/ArrowCircleRight.svg'
 import Upload from 'assets/svgs/Upload.svg'
+import LeftArrowCircle from 'assets/svgs/LeftArrowCircle.svg'
+import RightArrowCircle from 'assets/svgs/RightArrowCircle.svg'
+import LeftArrowCircleDisabled from 'assets/svgs/LeftArrowCircleDisabled.svg'
+import Plus from 'assets/svgs/Plus.svg'
 
 interface IIconProps {
   size?: number
@@ -151,6 +155,14 @@ const Icon: React.FunctionComponent<IIconProps> = (props) => {
         return ArrowCircleLeft
       case 'upload':
         return Upload
+      case 'left-arrow-circle':
+        return LeftArrowCircle
+      case 'right-arrow-circle':
+        return RightArrowCircle
+      case 'left-arrow-circle-disabled':
+        return LeftArrowCircleDisabled
+      case 'plus':
+        return Plus
       default:
         return null
     }

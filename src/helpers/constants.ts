@@ -52,3 +52,5 @@ export const appointmentSearchTypes: dropdownItems[] = [
     label: 'Topics',
   },
 ]
+
+export const buttonBackgroundPrimaryColor = '#4CC2CB'

@@ -14,7 +14,7 @@ interface ISearchResultProps {
   showTeleConsultBtn?: boolean
   showAppointmentBtn?: boolean
   topicListComponent?: React.ReactNode
-  onFollowClick?: () => {}
+  onFollowClick?: () => void
   onAppointmentClick?: () => void
   onTeleConnectClick?: () => void
 }

@@ -17,25 +17,66 @@ import {
 import { useAppDispatch, useAppSelector } from 'redux/hook'
 import { hideLoading, showLoading } from 'redux/reducer/commonSlice'
 import { updateDoctorProfileDetails } from 'redux/reducer/drProfileSlice'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { updatePatientProfile } from 'services/patientprofile'
 import { updatePatientProfileDetails } from 'redux/reducer/patientProfileSlice'
+import DatePickerEl from 'components/elements/form/DatePicker'
 
 const Fields = [
   {
-    label: 'Email',
+    label: 'First Name',
     type: 'textInput',
-    name: 'email',
-    isDisabled: true,
+    name: 'first_name',
     isRequired: true,
   },
   {
-    label: 'Mobile',
-    name: 'mobile',
+    label: 'Last name',
+    name: 'last_name',
     type: 'textInput',
-    isDisabled: true,
     isRequired: true,
   },
+  {
+    label: 'Gender',
+    type: 'dropdown',
+    name: 'gender',
+    isRequired: true,
+  },
+  {
+    label: 'Marital Status',
+    name: 'martial_status',
+    type: 'textInput',
+  },
+  {
+    label: 'Date of Birth',
+    type: 'date',
+    name: 'date_of_birth',
+    isRequired: true,
+  },
+  {
+    label: 'No. of Children',
+    type: 'textInput',
+    name: 'number_of_kids',
+  },
+
+  {
+    label: 'Profession',
+    type: 'textInput',
+    name: 'designation',
+  },
+  // {
+  //   label: 'Email',
+  //   type: 'textInput',
+  //   name: 'email',
+  //   isDisabled: true,
+  //   isRequired: true,
+  // },
+  // {
+  //   label: 'Mobile',
+  //   name: 'mobile',
+  //   type: 'textInput',
+  //   isDisabled: true,
+  //   isRequired: true,
+  // },
   {
     label: 'Address',
     type: 'textInput',
@@ -55,7 +96,7 @@ const Fields = [
     isRequired: true,
   },
   {
-    label: 'Nationality',
+    label: 'Country',
     type: 'dropdown',
     items: [{ label: 'Malaysia', value: 'Malaysia' }],
     zIndex: 200,
@@ -65,6 +106,13 @@ const Fields = [
 ]
 
 const defaultFormState = {
+  first_name: { isRequired: true, value: '' },
+  last_name: { isRequired: true, value: '' },
+  gender: { isRequired: true, value: '' },
+  martial_status: { isRequired: false, value: '' },
+  date_of_birth: { isRequired: true, value: '' },
+  number_of_kids: { isRequired: false, value: '' },
+  designation: { isRequired: false, value: '' },
   email: '',
   mobile: '',
   address: { isRequired: true, value: '' },
@@ -100,6 +148,13 @@ const ContactInfoForm = () => {
           country_id: formState['country_id']?.value,
           id_type_id: formState['id_type_id'],
           id_number: formState['id_number'],
+          first_name: formState['first_name']?.value,
+          last_name: formState['last_name']?.value,
+          gender: formState['gender']?.value,
+          date_of_birth: formState['date_of_birth']?.value,
+          martial_status: formState['martial_status']?.value,
+          designation: formState['designation']?.value,
+          number_of_kids: formState['number_of_kids']?.value,
         }
         const res2 = await updatePatientProfile(data)
 
@@ -122,6 +177,10 @@ const ContactInfoForm = () => {
     setDropdownItems({
       country_id: getDropdownFormat(countries.data.data.countries),
       id_type_id: getDropdownFormat(idTypes.data.data.id_types),
+      gender: [
+        { label: 'Male', value: 'Male' },
+        { label: 'Female', value: 'Female' },
+      ],
     })
   }
 
@@ -134,6 +193,13 @@ const ContactInfoForm = () => {
       country_id: { isRequired: true, value: profile?.country_id },
       id_type_id: profile?.id_type_id,
       id_number: profile?.id_number,
+      first_name: { isRequired: true, value: profile?.first_name },
+      last_name: { isRequired: true, value: profile?.last_name },
+      gender: { isRequired: true, value: profile?.gender },
+      date_of_birth: { isRequired: true, value: profile?.date_of_birth },
+      martial_status: { isRequired: true, value: profile?.martial_status },
+      designation: { isRequired: true, value: profile?.designation },
+      number_of_kids: { isRequired: false, value: '' + profile?.number_of_kids },
     })
   }, [])
 
@@ -141,7 +207,7 @@ const ContactInfoForm = () => {
     <ScrollView>
       <View style={styles.form}>
         <KeyboardDismiss>
-          {formFields.map((field) =>
+          {formFields.map((field: any) =>
             field.type === 'textInput' ? (
               <View
                 style={{ marginTop: field?.label === 'Postal Code' ? 0 : 0, zIndex: 100 }}
@@ -156,7 +222,7 @@ const ContactInfoForm = () => {
                   isRequired={field.isRequired}
                 />
               </View>
-            ) : (
+            ) : field.type === 'dropdown' ? (
               <Dropdown
                 key={field.name}
                 value={formState[field.name]?.value ?? formState[field.name]}
@@ -167,9 +233,19 @@ const ContactInfoForm = () => {
                 isRequired={field.isRequired}
                 zIndex={100}
                 zIndexInverse={50}
-                scroll
-                searchable
+                scroll={field.name !== 'gender'}
+                searchable={field.name !== 'gender'}
               />
+            ) : (
+              <Fragment key={field.name}>
+                <DatePickerEl
+                  name={field.name}
+                  value={formState[field.name].value}
+                  label={field.label}
+                  error={errors.dob}
+                  onChange={onChange}
+                />
+              </Fragment>
             )
           )}
 
@@ -186,9 +262,10 @@ const ContactInfoForm = () => {
 
           {formState['id_type_id'] === 1 ? (
             <InputEl
-              label="IC(Old/New)"
+              label="NRIC Number"
               value={formState['id_number']}
               onChangeText={(text: string) => onChange('id_number', text)}
+              style={{ zIndex: 10001 }}
             />
           ) : (
             <InputEl

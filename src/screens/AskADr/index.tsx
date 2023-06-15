@@ -1,10 +1,9 @@
 import Icon from 'components/elements/Icon'
 import MyText from 'components/elements/MyText'
-import { QuestionAnswer } from 'components/modules/AskADR'
+import { QuestionAnswer, SearchAskADr } from 'components/modules/AskADR'
 import MyCircle from 'components/modules/MedikConnect/MyCircle'
 import Post from 'components/modules/MedikConnect/Post'
 import AddPost from 'components/modules/MedikConnect/Post/AddPost'
-import SearchPost from 'components/modules/common/Search'
 import SearchResult from 'components/modules/common/Search/SearchResult'
 import { medicConnectSearchTypes, medicPostTypes } from 'helpers/constants'
 import * as React from 'react'
@@ -44,7 +43,7 @@ const AskADr: React.FunctionComponent<IMedikConnectProps> = (props) => {
     >
       <View style={styles.postContainer}>
         <View style={{ ...styles.topBar, zIndex: showAddPost ? 0 : 100 }}>
-          <SearchPost
+          <SearchAskADr
             value={searchText}
             onChange={(text) => setSearchText(text)}
             onSearch={(val) => onSearch(val)}
@@ -52,6 +51,7 @@ const AskADr: React.FunctionComponent<IMedikConnectProps> = (props) => {
             setSelectedSearchType={setSelectedSearchType}
             showSearchTypes={showSearchTypes}
             setShowSearchTypes={setShowSearchTypes}
+            placeholder="Search with Tags..."
           />
           <View style={styles.iconContainer}>
             <Pressable
