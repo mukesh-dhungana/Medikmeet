@@ -107,11 +107,11 @@ const FamilyMedicalForm = (props: AppProps) => {
             label="Currently still on treatment/follow-up?"
             style={{ marginBottom: 20 }}
           />
-          <InputEl
+          {!formState['still_on_follow_up'] && <InputEl
             label="Reason not on Follow-up"
             onChangeText={(text) => onChange('reason_not_follow_up', text)}
             value={formState['reason_not_follow_up']}
-          />
+          />}
 
           {formState['still_on_follow_up'] && (
             <>

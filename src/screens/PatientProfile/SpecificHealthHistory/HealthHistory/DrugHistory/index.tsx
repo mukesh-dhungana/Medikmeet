@@ -13,6 +13,7 @@ import {
 import { getDosage, getDuration, getRoute, getRouteType } from 'services/masters'
 import { getDropdownFormat } from 'helpers/utils'
 import { useAppSelector } from 'redux/hook'
+import { buttonBackgroundPrimaryColor } from 'helpers/constants'
 
 const DrugHistory = () => {
   const navigation = useNavigation()
@@ -126,6 +127,7 @@ const DrugHistory = () => {
           }}
           label="On any medication currently?"
           style={{ marginBottom: 20 }}
+
         />
 
         {isOnMedication ? (
@@ -141,6 +143,8 @@ const DrugHistory = () => {
                   })
                 }
                 style={{ marginBottom: 20 }}
+                buttonColor={buttonBackgroundPrimaryColor}
+
               >
                 Add Medicine/Drug
               </ButtonEl>
@@ -161,18 +165,14 @@ const DrugHistory = () => {
                     med?.medicine_name,
                     med?.is_prescribed_by_doctor ? 'Yes' : 'No',
                     routeType?.find((center: any) => center.value === med?.route_type_id)?.label,
-                    `${med?.dosage} ${
-                      dosage?.find((center: any) => center.value === med?.dosage_unit_id)?.label
+                    `${med?.dosage} ${dosage?.find((center: any) => center.value === med?.dosage_unit_id)?.label
                     }`,
-                    `${med?.duration} ${
-                      duration?.find((center: any) => center.value === med?.duration_id)?.label
+                    `${med?.duration} ${duration?.find((center: any) => center.value === med?.duration_id)?.label
                     }`,
 
-                    `${med?.is_pre_meal ? 'Pre-Meal' : ''} ${med?.is_bd ? 'BD(2x)' : ''} ${
-                      med?.is_od ? 'OD(1X)' : ''
-                    } ${med?.is_prn ? 'PRN' : ''} ${med?.is_qid ? 'QID(4X)' : ''} ${
-                      med?.is_tds ? 'TDS(3X)' : ''
-                    }`.trim(),
+                    `${med?.is_pre_meal ? 'Pre-Meal' : ''} ${med?.is_bd ? 'BD(2x)' : ''} ${med?.is_od ? 'OD(1X)' : ''
+                      } ${med?.is_prn ? 'PRN' : ''} ${med?.is_qid ? 'QID(4X)' : ''} ${med?.is_tds ? 'TDS(3X)' : ''
+                      }`.trim(),
                     med?.compliant_medication_by_doctor ? 'Yes' : 'No',
                     med?.reason_non_compliant,
                   ]}
@@ -186,6 +186,8 @@ const DrugHistory = () => {
               <ButtonEl
                 onPress={() => navigation?.navigate('TraditionalMedicationForm')}
                 style={{ marginBottom: 20 }}
+                buttonColor={buttonBackgroundPrimaryColor}
+
               >
                 Add Traditional Medication
               </ButtonEl>

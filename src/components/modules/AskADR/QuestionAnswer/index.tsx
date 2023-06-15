@@ -1,5 +1,5 @@
 import MyText from 'components/elements/MyText'
-import * as React from 'react'
+import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 interface IPostProps {}
@@ -9,7 +9,20 @@ const questionAnswer = [
   { id: 2, postedByMe: true, isActionPost: true },
   { id: 3, postedBYMe: false },
 ]
+const MAX_LINES = 2
 const QuestionAnswer: React.FunctionComponent<IPostProps> = (props) => {
+  const [showText, setShowText] = useState(false)
+  const [numberOfLines, setNumberOfLines] = useState(2)
+  const [showMoreButton, setShowMoreButton] = useState(false)
+
+  const onTextLayout = (e: any) => {
+    console.log(e.nativeEvent)
+    if (e.nativeEvent.lines.length > MAX_LINES && !showText) {
+      setShowMoreButton(true)
+      setNumberOfLines(MAX_LINES)
+    }
+  }
+
   return (
     <View>
       {questionAnswer?.map((qa) => (
@@ -19,13 +32,19 @@ const QuestionAnswer: React.FunctionComponent<IPostProps> = (props) => {
             <Text style={styles.headingRight}> Responded</Text>
           </View>
           <View style={styles.descriptionContainer}>
-            <MyText style={styles.description} numberOfLines={2}>
+            <MyText
+              style={styles.description}
+              numberOfLines={numberOfLines}
+              onTextLayout={onTextLayout}
+            >
               Description: Turns out semicolon-less style is easier and safer in TS because most
               gotcha edge cases are type invalid as well.
             </MyText>
-            <Pressable>
-              <MyText style={styles.viewMore}>View more</MyText>
-            </Pressable>
+            {showMoreButton && (
+              <Pressable onPress={() => setShowText((showText) => !showText)}>
+                <MyText style={styles.viewMore}>{showText ? 'View Less' : 'View More'}</MyText>
+              </Pressable>
+            )}
             {/* <Text style={{ color: '#000000' }}>
               Description: Turns out semicolon-less style is easier and safer in TS because most
               gotcha edge cases are type invalid as well.
@@ -74,6 +93,7 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#000000',
+    fontSize: 12,
   },
   footer: {
     flexDirection: 'row',
@@ -89,7 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   viewMore: {
-    fontSize: 10,
+    fontSize: 12,
     lineHeight: 12,
     color: '#4CC2CB',
   },

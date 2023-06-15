@@ -19,3 +19,16 @@ export const getDropdownFormat = (data: any) =>
     label: item?.name ?? item?.route_type,
     value: item?.id,
   }))
+
+export const handleTabArrowClick = (index: number, arrowDirection: string, setIndex: (param: number) => void, routes: any) => {
+
+  if (index === 0 && arrowDirection === 'left' || index === routes.length - 1 && arrowDirection === 'right')
+    return;
+
+  if (arrowDirection === 'right')
+    setIndex(index + 1)
+  else
+    setIndex(index - 1);
+
+}
+
