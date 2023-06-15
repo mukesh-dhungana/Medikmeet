@@ -16,6 +16,7 @@ import {
   ProfileInformation,
   QualificationInfo,
   QualificationsForm,
+  SpecialtyForm,
   Work,
   WorkForm,
 } from 'screens/DoctorProfile'
@@ -198,6 +199,16 @@ const DoctorProfile = () => {
         component={Confirmation}
         options={{
           headerTitle: () => <ProfileHeader heading="Confirmation" title="" onBackPress={goBack} />,
+          headerBackVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="specialty"
+        component={SpecialtyForm}
+        options={{
+          headerTitle: () => (
+            <ProfileHeader title="Speciality/SubSpeciality" onBackPress={goBack} />
+          ),
           headerBackVisible: false,
         }}
       />

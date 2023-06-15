@@ -47,6 +47,7 @@ import Upload from 'assets/svgs/Upload.svg'
 import LeftArrowCircle from 'assets/svgs/LeftArrowCircle.svg'
 import RightArrowCircle from 'assets/svgs/RightArrowCircle.svg'
 import LeftArrowCircleDisabled from 'assets/svgs/LeftArrowCircleDisabled.svg'
+import Plus from 'assets/svgs/Plus.svg'
 
 interface IIconProps {
   size?: number
@@ -157,6 +158,8 @@ const Icon: React.FunctionComponent<IIconProps> = (props) => {
         return RightArrowCircle
       case 'left-arrow-circle-disabled':
         return LeftArrowCircleDisabled
+      case 'plus':
+        return Plus
       default:
         return null
     }
